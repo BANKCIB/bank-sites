@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Prime Bank Mockup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="phone-shell" aria-label="Prime Bank educational mockup">
+    <section id="splashScreen" class="screen screen-splash is-active" aria-label="Splash screen">
+      <div class="brand brand-splash" aria-label="Prime Bank">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="globe-line globe-line-h"></span>
+          <span class="globe-line globe-line-h second"></span>
+          <span class="globe-line globe-line-v"></span>
+          <span class="globe-line globe-line-v second"></span>
+        </span>
+        <span class="brand-text">Prime Bank</span>
+      </div>
+      <p class="splash-tagline">THE BANK TO TRUST</p>
+    </section>
+
+    <section id="loginScreen" class="screen screen-login" aria-label="تسجيل الدخول">
+      <div class="login-content">
+        <header class="login-header">
+          <button id="languageButton" class="language-button" type="button" aria-label="اختيار اللغة">
+            <span class="chevron" aria-hidden="true"></span>
+            <span id="languageLabel">العربية</span>
+          </button>
+
+          <div class="brand brand-login" aria-label="Prime Bank">
+            <span class="brand-mark small" aria-hidden="true">
+              <span class="globe-line globe-line-h"></span>
+              <span class="globe-line globe-line-h second"></span>
+              <span class="globe-line globe-line-v"></span>
+              <span class="globe-line globe-line-v second"></span>
+            </span>
+            <span class="brand-text">Prime Bank</span>
+          </div>
+        </header>
+
+        <form id="loginForm" class="login-form" autocomplete="off">
+          <label id="usernameLabel" class="field-label" for="username">اسم المستخدم</label>
+          <input id="username" class="text-input english-only-input" name="username" type="text" placeholder="Enter username" lang="en" dir="ltr" autocapitalize="none" spellcheck="false" autocomplete="off">
+
+          <label id="passwordLabel" class="field-label" for="password">كلمة المرور</label>
+          <div class="password-wrap">
+            <input id="password" class="text-input password-input english-only-input" name="password" type="password" placeholder="Enter password" lang="en" dir="ltr" autocapitalize="none" spellcheck="false" autocomplete="off">
+            <button id="togglePassword" class="icon-button eye-button" type="button" aria-label="إظهار كلمة المرور">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.5 12s3.2-5.5 9.5-5.5S21.5 12 21.5 12 18.3 17.5 12 17.5 2.5 12 2.5 12Z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+            </button>
+          </div>
+          <p id="englishInputHint" class="input-hint">استخدم أحرف وأرقام ورموز إنجليزية فقط</p>
+
+          <a id="forgotLink" class="forgot-link" href="#" aria-label="هل نسيت كلمة المرور؟">هل نسيت كلمة المرور؟</a>
+
+          <div class="login-actions">
+            <button id="loginButton" class="login-button" type="submit" disabled>تسجيل الدخول</button>
+            <button id="fingerprintButton" class="fingerprint-button" type="button" aria-label="تسجيل الدخول بالبصمة">
+              <svg viewBox="0 0 36 36" aria-hidden="true">
+                <path d="M18 4.8c-6 0-10.8 4.7-10.8 10.5"></path>
+                <path d="M28.8 17.2v-1.9C28.8 9.5 24 4.8 18 4.8"></path>
+                <path d="M11.1 17.6c0-3.8 3-6.9 6.9-6.9 3.8 0 6.9 3.1 6.9 6.9v2"></path>
+                <path d="M18 15.4c-1.3 0-2.3 1-2.3 2.3 0 5.5-1.5 8.8-4.6 11"></path>
+                <path d="M20.3 17.7c0 6.1-1.8 10.2-5.5 13.4"></path>
+                <path d="M24.8 23.4c-.5 3.4-1.6 6-3.3 8"></path>
+                <path d="M29 29.2c-2.6-3.1-4-6.8-4-11.5"></path>
+                <path d="M7.1 23.5c.9-1.6 1.3-3.5 1.3-5.8"></path>
+              </svg>
+            </button>
+          </div>
+
+          <p class="signup-text"><span id="signupPrompt">مستخدم جديد؟</span> <a id="signupLink" href="#">سجل الآن</a></p>
+        </form>
+      </div>
+
+      <div class="login-bottom">
+        <button class="help-bar" type="button">
+          <span class="help-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12a7 7 0 0 1 14 0"></path>
+              <path d="M5 12v4a2 2 0 0 0 2 2h1v-6H6a1 1 0 0 0-1 1"></path>
+              <path d="M19 12v4a2 2 0 0 1-2 2h-1v-6h2a1 1 0 0 1 1 1"></path>
+            </svg>
+          </span>
+          <span id="helpText">تحتاج إلى مساعدة؟ اتصل بنا</span>
+        </button>
+        <footer class="footer-shortcuts" aria-label="اختصارات">
+          <button class="shortcut" type="button">
+            <span class="shortcut-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21s6-5.1 6-11a6 6 0 0 0-12 0c0 5.9 6 11 6 11Z"></path>
+                <circle cx="12" cy="10" r="2"></circle>
+              </svg>
+            </span>
+            <span id="branchShortcut">أماكن الفروع وماكينات الصراف الآلي</span>
+          </button>
+          <button class="shortcut" type="button">
+            <span class="shortcut-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 10h16v10H4z"></path>
+                <path d="M4 10V7h16v3"></path>
+                <path d="M12 7v13"></path>
+                <path d="M8.4 7C7 5.6 7.6 4 9.2 4 11.2 4 12 7 12 7s.8-3 2.8-3c1.6 0 2.2 1.6.8 3"></path>
+              </svg>
+            </span>
+            <span id="rewardShortcut">مكافأة Prime</span>
+          </button>
+          <button class="shortcut" type="button">
+            <span class="shortcut-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 7h10"></path>
+                <path d="m14 4 3 3-3 3"></path>
+                <path d="M17 17H7"></path>
+                <path d="m10 14-3 3 3 3"></path>
+              </svg>
+            </span>
+            <span id="currencyShortcut">محول العملات وأسعار الصرف</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section id="otpScreen" class="screen screen-otp" aria-label="الرقم السري المتغير">
+      <header class="otp-topbar">
+        <button id="closeOtp" class="close-button" type="button" aria-label="العودة إلى تسجيل الدخول">×</button>
+        <h1 id="otpTopTitle">الرقم السري المتغير (OTP)</h1>
+      </header>
+
+      <div class="otp-content">
+        <h2 id="otpTitle">الرقم السري المتغير (OTP)</h2>
+        <p id="otpDescription">يرجى إدخال الرقم السري المتغير (OTP) الذي تم استلامه على ********9805</p>
+
+        <div class="otp-grid" dir="ltr" aria-label="خانات الرقم السري المتغير">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 1">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 2">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 3">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 4">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 5">
+          <input class="otp-input" inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
+        </div>
+
+        <p class="timer-text"><span id="timerPrefix">تنتهي الصلاحية خلال:</span> <span id="timer">02:54</span> <span id="timerSuffix">دقائق</span></p>
+        <button id="resendOtp" class="resend-button" type="button">لم تتلق الرمز؟ إعادة إرسال</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
