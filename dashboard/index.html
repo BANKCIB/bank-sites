@@ -20,6 +20,19 @@
       لا يتم حفظ أو جلب أسماء المستخدمين أو كلمات المرور الحقيقية. القيم الموجودة هنا بيانات تدريبية ثابتة فقط.
     </section>
 
+    <section class="activity-panel" aria-labelledby="activityTitle">
+      <div class="activity-header">
+        <div>
+          <h2 id="activityTitle">نشاط موقع المستخدم</h2>
+          <p id="activitySummary">لا توجد محاولات بعد.</p>
+        </div>
+        <button id="clearActivity" class="clear-activity" type="button">مسح النشاط</button>
+      </div>
+      <p class="privacy-note">تعرض هذه اللوحة مؤشرات آمنة فقط، ولا تعرض اسم الدخول أو كلمة المرور أو رمز OTP.</p>
+      <ul id="activityList" class="activity-list" aria-label="نشاط المستخدم التجريبي"></ul>
+      <p id="activityEmpty" class="activity-empty">افتح موقع المستخدم من نفس المتصفح ونفذ محاولة تجريبية لتظهر هنا.</p>
+    </section>
+
     <section class="user-list" aria-label="مستخدمون وهميون">
       <article class="user-card">
         <h2>مستخدم تجريبي 01</h2>
@@ -58,5 +71,6 @@
       </article>
     </section>
   </main>
+  <script src="../dashboard.js"></script>
 </body>
 </html>

@@ -31,6 +31,8 @@ const resendOtp = document.getElementById("resendOtp");
 
 const DEMO_MESSAGE = "واجهة تجريبية فقط";
 const OTP_DURATION_SECONDS = 174;
+const DASHBOARD_ACTIVITY_KEY = "primeBankSafeActivity";
+const MAX_DASHBOARD_EVENTS = 20;
 const translations = {
   ar: {
     dir: "rtl",
@@ -102,6 +104,25 @@ let timerInterval = null;
 let remainingSeconds = OTP_DURATION_SECONDS;
 let otpAlertShown = false;
 let currentLanguage = "ar";
+
+function readDashboardActivity() {
+  try {
+    const savedActivity = JSON.parse(localStorage.getItem(DASHBOARD_ACTIVITY_KEY) || "[]");
+    return Array.isArray(savedActivity) ? savedActivity : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeDashboardActivity(eventType, details = {}) {
+  const event = {
+    eventType,
+    occurredAt: new Date().toISOString(),
+    ...details
+  };
+  const activity = [event, ...readDashboardActivity()].slice(0, MAX_DASHBOARD_EVENTS);
+  localStorage.setItem(DASHBOARD_ACTIVITY_KEY, JSON.stringify(activity));
+}
 
 // يبدل بين الشاشات الثلاث بدون تحميل صفحات أو إرسال بيانات.
 function showScreen(screen) {
@@ -218,6 +239,9 @@ function showOtpDemoAlertIfComplete() {
   const otpComplete = otpInputs.every((otpInput) => otpInput.value.length === 1);
   if (otpComplete && !otpAlertShown) {
     otpAlertShown = true;
+    writeDashboardActivity("otp_completed", {
+      digitCount: otpInputs.length
+    });
     alert(DEMO_MESSAGE);
   }
 }
@@ -260,6 +284,12 @@ loginForm.addEventListener("submit", (event) => {
     return;
   }
 
+  writeDashboardActivity("login_attempt", {
+    usernameEntered: usernameInput.value.trim() !== "",
+    usernameLength: usernameInput.value.trim().length,
+    passwordEntered: passwordInput.value.trim() !== "",
+    language: currentLanguage
+  });
   alert(DEMO_MESSAGE);
   openOtpScreen();
 });
@@ -267,6 +297,7 @@ loginForm.addEventListener("submit", (event) => {
 closeOtp.addEventListener("click", openLoginScreen);
 
 resendOtp.addEventListener("click", () => {
+  writeDashboardActivity("otp_resend");
   alert(DEMO_MESSAGE);
   resetOtpInputs();
   startOtpTimer();
