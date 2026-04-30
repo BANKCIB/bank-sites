@@ -965,6 +965,29 @@ html[dir="ltr"] .shortcut {
   font-weight: 800;
 }
 
+.live-status {
+  margin-top: 14px;
+  padding: 12px;
+  background: #eef7ff;
+  border: 1px solid #cfe6f8;
+  border-radius: 12px;
+}
+
+.live-status strong,
+.live-status span {
+  display: block;
+}
+
+.live-status strong {
+  color: var(--primary-blue);
+}
+
+.live-status span {
+  margin-top: 4px;
+  color: #52616f;
+  line-height: 1.6;
+}
+
 .activity-list {
   display: grid;
   gap: 10px;

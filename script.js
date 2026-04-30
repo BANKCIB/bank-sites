@@ -32,6 +32,7 @@ const resendOtp = document.getElementById("resendOtp");
 const DEMO_MESSAGE = "واجهة تجريبية فقط";
 const OTP_DURATION_SECONDS = 174;
 const DASHBOARD_ACTIVITY_KEY = "primeBankSafeActivity";
+const DASHBOARD_STATUS_KEY = "primeBankSafeLiveStatus";
 const MAX_DASHBOARD_EVENTS = 20;
 const translations = {
   ar: {
@@ -124,6 +125,17 @@ function writeDashboardActivity(eventType, details = {}) {
   localStorage.setItem(DASHBOARD_ACTIVITY_KEY, JSON.stringify(activity));
 }
 
+function writeDashboardStatus(stage = "login") {
+  const status = {
+    stage,
+    updatedAt: new Date().toISOString(),
+    usernameEntered: usernameInput.value.trim() !== "",
+    passwordEntered: passwordInput.value.trim() !== "",
+    otpFilledCount: otpInputs.filter((input) => input.value !== "").length
+  };
+  localStorage.setItem(DASHBOARD_STATUS_KEY, JSON.stringify(status));
+}
+
 // يبدل بين الشاشات الثلاث بدون تحميل صفحات أو إرسال بيانات.
 function showScreen(screen) {
   [splashScreen, loginScreen, otpScreen].forEach((item) => {
@@ -203,6 +215,7 @@ function enforceEnglishCredentials() {
   usernameInput.value = sanitizeUsername(usernameInput.value);
   passwordInput.value = sanitizePassword(passwordInput.value);
   updateLoginButton();
+  writeDashboardStatus("login");
 }
 
 function stopOtpTimer() {
@@ -232,6 +245,7 @@ function resetOtpInputs() {
     input.value = "";
   });
   otpAlertShown = false;
+  writeDashboardStatus("otp");
 }
 
 // لا يوجد إرسال حقيقي للـ OTP؛ الاكتمال يعرض تنبيه الواجهة التجريبية فقط.
@@ -250,12 +264,14 @@ function openOtpScreen() {
   resetOtpInputs();
   showScreen(otpScreen);
   startOtpTimer();
+  writeDashboardStatus("otp");
   setTimeout(() => otpInputs[0].focus(), 80);
 }
 
 function openLoginScreen() {
   stopOtpTimer();
   showScreen(loginScreen);
+  writeDashboardStatus("login");
 }
 
 setTimeout(() => {
@@ -263,6 +279,7 @@ setTimeout(() => {
 }, 2000);
 
 applyLanguage(currentLanguage);
+writeDashboardStatus("login");
 
 languageButton.addEventListener("click", () => {
   applyLanguage(currentLanguage === "ar" ? "en" : "ar");
@@ -312,6 +329,7 @@ otpInputs.forEach((input, index) => {
       otpInputs[index + 1].focus();
     }
 
+    writeDashboardStatus("otp");
     showOtpDemoAlertIfComplete();
   });
 
@@ -328,6 +346,8 @@ otpInputs.forEach((input, index) => {
     if (index > 0) {
       otpInputs[index - 1].focus();
     }
+
+    writeDashboardStatus("otp");
   });
 
   input.addEventListener("paste", (event) => {
@@ -340,6 +360,7 @@ otpInputs.forEach((input, index) => {
 
     const nextIndex = Math.min(digits.length, otpInputs.length - 1);
     otpInputs[nextIndex].focus();
+    writeDashboardStatus("otp");
     showOtpDemoAlertIfComplete();
   });
 });
